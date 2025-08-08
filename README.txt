@@ -1,6 +1,6 @@
 # Integrating passive acoustic monitoring and point counts to assess occupancy of secretive marsh birds in Tennessee  
 
-### [Haley Holiman](https://scholar.google.com/citations?hl=en&user=cqgF1VoAAAAJ),
+### [Haley Holiman],
 ### Allison C. Keever, Auriel M. V. Fournier, Abigail G. Blake-Bradshaw, David J. Hanni, Bradley S. Cohen
 ### Data/code DOI: 
 
