@@ -10,7 +10,7 @@ ________________________________________________________________________________
 
 ## Abstract:  
 1. Objective 1: Single Season Occupancy analysis to compare three survey methods: Point Count (PC), Autonomous Recording Unit Survey (ARU), and an integration of both (ARU + PC)
-2. PObjective 2: Occupancy analysis using ARU + PC survey method to assess variables affecting detection probability and habitat selection of marsh birds in Tennessee	
+2. Objective 2: Occupancy analysis using ARU + PC survey method to assess variables affecting detection probability and habitat selection of marsh birds in Tennessee	
 
 ## Repository Directory
 
