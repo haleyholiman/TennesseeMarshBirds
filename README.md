@@ -1,4 +1,4 @@
-##### CODE IS NOT FINAL AS OF 8/21/25 ####
+##### CODE IS NOT FINALIZED AS OF 8/21/25 - Still in progress ####
 # Integrating passive acoustic monitoring and point counts to assess occupancy of secretive marsh birds in Tennessee  
 
 ### [Haley Holiman],
