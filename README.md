@@ -1,8 +1,7 @@
 ##### CODE IS NOT FINALIZED AS OF 8/21/25 - Still in progress ####
 # Integrating passive acoustic monitoring and point counts to assess occupancy of secretive marsh birds in Tennessee  
 
-### [Haley Holiman],
-### Allison C. Keever, Auriel M. V. Fournier, Abigail G. Blake-Bradshaw, David J. Hanni, Bradley S. Cohen
+### Haley Holiman, Allison C. Keever, Auriel M. V. Fournier, Abigail G. Blake-Bradshaw, David J. Hanni, Bradley S. Cohen
 ### Data/code DOI: 
 
 #### Please contact the first author for questions about the code or data: Haley Holiman (haley.holiman@siu.edu or lhaleyh97@gmail.com)
