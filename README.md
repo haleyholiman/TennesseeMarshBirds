@@ -1,7 +1,7 @@
+##### CODE IS NOT FINALIZED AS OF 8/21/25 - Still in progress ####
 # Integrating passive acoustic monitoring and point counts to assess occupancy of secretive marsh birds in Tennessee  
 
-### [Haley Holiman],
-### Allison C. Keever, Auriel M. V. Fournier, Abigail G. Blake-Bradshaw, David J. Hanni, Bradley S. Cohen
+### Haley Holiman, Allison C. Keever, Auriel M. V. Fournier, Abigail G. Blake-Bradshaw, David J. Hanni, Bradley S. Cohen
 ### Data/code DOI: 
 
 #### Please contact the first author for questions about the code or data: Haley Holiman (haley.holiman@siu.edu or lhaleyh97@gmail.com)
@@ -9,7 +9,7 @@ ________________________________________________________________________________
 
 ## Abstract:  
 1. Objective 1: Single Season Occupancy analysis to compare three survey methods: Point Count (PC), Autonomous Recording Unit Survey (ARU), and an integration of both (ARU + PC)
-2. PObjective 2: Occupancy analysis using ARU + PC survey method to assess variables affecting detection probability and habitat selection of marsh birds in Tennessee	
+2. Objective 2: Occupancy analysis using ARU + PC survey method to assess variables affecting detection probability and habitat selection of marsh birds in Tennessee	
 
 ## Repository Directory
 
