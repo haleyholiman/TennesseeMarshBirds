@@ -2,14 +2,14 @@
 # 
 ## file name: 202_DataPrep.R
 ## Author: Haley Holiman
-## Updated 12/18/2024
+## Updated 08/27/2025
 ## Output: Code to clean up PC and ARU data for Part 2 of TN Marshbirds Paper
 ################################################################################L
 
 source("./scripts/101_DataPrep.R")
 rm(enc_hist_aru) ##just using combined data encounter history 
 
-enc_hist_comb = rapply(enc_hist_comb, f = function(x) ifelse(is.na(x), 0, x), how = "replace")
+#enc_hist_comb = rapply(enc_hist_comb, f = function(x) ifelse(is.na(x), 0, x), how = "replace")
 select <- dplyr::select
 
 #1. load data ------------------------------------------------------------------
@@ -162,7 +162,7 @@ day_cov <- day_cov[, -20]
 day_cov <- day_cov[, -19]
 day_cov <- day_cov[, -18]
 day_cov <- day_cov[, -17]
-View(day_cov)
+
 day_cov[9,2] <- 2
 day_cov[9,"Occ1_1"] <- 2
 day_cov[12,"Occ1_1"] <- 9
@@ -245,7 +245,6 @@ noaa_cov2 <- noaa_cov2[, common_columns]
 noaa_cov <- rbind(noaa_cov1, noaa_cov2)
 
 #2. Format COVS for r unmarked -------------------------------------------------
-?unmarkedMultFrame
 
 #observation covs
 obsCov <- list(recording_day = recording_covall,
