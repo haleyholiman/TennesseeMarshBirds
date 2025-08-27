@@ -2,11 +2,11 @@
 #
 ##file name: 103_Figures.R
 ## Author: Haley Holiman
-## Updated 7/8/2025
+## Updated 8/8/2025
 ## Output: Figures for Part 1 of TN Marshbirds Paper
 ################################################################################
 #setwd("C:/Users/SIU856584167/OneDrive - Southern Illinois University/Marshbirds/final_draft")
-#source("./scripts/102_Models.R")
+source("./scripts/102_Models.R")
 library(ggpubr)
 library(patchwork)
 
@@ -95,7 +95,7 @@ p.lebi <- ggplot(aru.data.lebi, aes(x = Method, y = Estimate, group = Method)) +
     aes(ymin = low_ci, ymax = high_ci),
     position = position_dodge(width = 0.2),
     width = 0.2) +
-  labs(x = "Method", y = "Detection Probability") +
+  labs(title = "Least Bittern",x = "Method", y = "Detection Probability") +
   theme_Publication() +
   theme_pubr() +
   labs_pubr() +
@@ -112,74 +112,7 @@ p.lebi
 #        dpi = 300,
 #        units = "in")
 
-##colonization olots
 
-aru.data.lebi <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_col_lebi_m2, est_col_lebi_m3),
-  low_ci = c(boot::inv.logit(ci_col_lebi_m2[1]), boot::inv.logit(ci_col_lebi_m3[1])),
-  high_ci = c(boot::inv.logit(ci_col_lebi_m2[2]), boot::inv.logit(ci_col_lebi_m3[2]))
-)
-
-aru.data.lebi$Method <- factor(aru.data.lebi$Method, levels = c("ARU","ARU + PC"))
-
-col.lebi <- ggplot(aru.data.lebi, aes(x = Method, y = Estimate, group = Method)) +
-  geom_point(position = position_dodge(width = 0.2)) +
-  geom_errorbar(
-    aes(ymin = low_ci, ymax = high_ci),
-    position = position_dodge(width = 0.2),
-    width = 0.2) +
-  labs(title = "Least Bittern",
-       x = "Method", y = "Colonization") +
-  theme_Publication() +
-  theme_pubr() +
-  labs_pubr() +
-  theme(axis.title = element_text(size = 8),
-        title = element_text(size = 10),
-        axis.text = element_text(size = 8)) +
-  scale_y_continuous(limits = c(0,1))
-
-col.lebi
-
-# ggsave("./Plots/ch1/col_compare_lebi.png", plot = col.lebi,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
-
-
-#extinction plots
-aru.data.lebi <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_ext_lebi_m2, est_ext_lebi_m3),
-  low_ci = c(boot::inv.logit(ci_ext_lebi_m2[1]), boot::inv.logit(ci_ext_lebi_m3[1])),
-  high_ci = c(boot::inv.logit(ci_ext_lebi_m2[2]), boot::inv.logit(ci_ext_lebi_m3[2]))
-)
-
-aru.data.lebi$Method <- factor(aru.data.lebi$Method, levels = c("ARU","ARU + PC"))
-
-ext.lebi <- ggplot(aru.data.lebi, aes(x = Method, y = Estimate, group = Method)) +
-  geom_point(position = position_dodge(width = 0.2)) +
-  geom_errorbar(
-    aes(ymin = low_ci, ymax = high_ci),
-    position = position_dodge(width = 0.2),
-    width = 0.2) +
-  labs(x = "Method", y = "Extinction") +
-  theme_Publication() +
-  theme_pubr() +
-  labs_pubr() +
-  theme(axis.title = element_text(size = 8),
-        title = element_text(size = 10),
-        axis.text = element_text(size = 8)) +
-  scale_y_continuous(limits = c(0,1))
-
-ext.lebi
-
-# ggsave("./Plots/ch1/ext_compare_lebi.png", plot = ext.lebi,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
 
 
 #AMCO --------------------------------------------------------------------------
@@ -231,7 +164,7 @@ p.amco <- ggplot(aru.data.amco, aes(x = Method, y = Estimate, group = Method)) +
     aes(ymin = low_ci, ymax = high_ci),
     position = position_dodge(width = 0.2),
     width = 0.2) +
-  labs(x = "Method", y = "Detection Probability") +
+  labs(title = "American Coot",x = "Method", y = "Detection Probability") +
   theme_Publication() +
   theme_pubr() +
   labs_pubr() +
@@ -242,80 +175,7 @@ p.amco <- ggplot(aru.data.amco, aes(x = Method, y = Estimate, group = Method)) +
 
 p.amco
 
-# ggsave("./Plots/ch1/p_compare_amco.png", plot = p.amco,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
 
-##colonization from dynamic 
-
-aru.data.amco <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_col_amco_m2, est_col_amco_m3),
-  low_ci = c(boot::inv.logit(ci_col_amco_m2[1]), boot::inv.logit(ci_col_amco_m3[1])),
-  high_ci = c(boot::inv.logit(ci_col_amco_m2[2]), boot::inv.logit(ci_col_amco_m3[2]))
-)
-
-aru.data.amco$Method <- factor(aru.data.amco$Method, levels = c("ARU","ARU + PC"))
-
-col.amco <- ggplot(aru.data.amco, aes(x = Method, y = Estimate, group = Method)) +
-  geom_point(position = position_dodge(width = 0.2)) +
-  geom_errorbar(
-    aes(ymin = low_ci, ymax = high_ci),
-    position = position_dodge(width = 0.2),
-    width = 0.2) +
-  labs(title = "American Coot",
-       x = "Method", y = "Colonization") +
-  theme_Publication() +
-  theme_pubr() +
-  labs_pubr() +
-  theme(axis.title = element_text(size = 8),
-        title = element_text(size = 10),
-        axis.text = element_text(size = 8)) +
-  scale_y_continuous(limits = c(0,1))
-
-col.amco
-
-# ggsave("./Plots/ch1/col_compare_amco.png", plot = col.amco,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
-
-
-#extinction 
-aru.data.amco <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_ext_amco_m2, est_ext_amco_m3),
-  low_ci = c(boot::inv.logit(ci_ext_amco_m2[1]), boot::inv.logit(ci_ext_amco_m3[1])),
-  high_ci = c(boot::inv.logit(ci_ext_amco_m2[2]), boot::inv.logit(ci_ext_amco_m3[2]))
-)
-
-aru.data.amco$Method <- factor(aru.data.amco$Method, levels = c("ARU","ARU + PC"))
-
-ext.amco <- ggplot(aru.data.amco, aes(x = Method, y = Estimate, group = Method)) +
-  geom_point(position = position_dodge(width = 0.2)) +
-  geom_errorbar(
-    aes(ymin = low_ci, ymax = high_ci),
-    position = position_dodge(width = 0.2),
-    width = 0.2) +
-  labs(x = "Method", y = "Extinction") +
-  theme_Publication() +
-  theme_pubr() +
-  labs_pubr() +
-  theme(axis.title = element_text(size = 8),
-        title = element_text(size = 10),
-        axis.text = element_text(size = 8)) +
-  scale_y_continuous(limits = c(0,1))
-
-ext.amco
-
-# ggsave("./Plots/ch1/ext_compare_amco.png", plot = ext.amco,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
 
 #PBGR --------------------------------------------------------------------------
 aru.data.pbgr <- data.frame(
@@ -366,7 +226,7 @@ p.pbgr <- ggplot(aru.data.pbgr, aes(x = Method, y = Estimate, group = Method)) +
     aes(ymin = low_ci, ymax = high_ci),
     position = position_dodge(width = 0.2),
     width = 0.2) +
-  labs(x = "Method", y = "Detection Probability") +
+  labs(title = "Pied-billed Grebe",x = "Method", y = "Detection Probability") +
   theme_Publication() +
   theme_pubr() +
   labs_pubr() +
@@ -377,91 +237,18 @@ p.pbgr <- ggplot(aru.data.pbgr, aes(x = Method, y = Estimate, group = Method)) +
 
 p.pbgr
 
-# ggsave("./Plots/ch1/p_compare_pbgr.png", plot = p.pbgr,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
 
-##colonization from dynamic 
-
-aru.data.pbgr <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_col_pbgr_m2, est_col_pbgr_m3),
-  low_ci = c(boot::inv.logit(ci_col_pbgr_m2[1]), boot::inv.logit(ci_col_pbgr_m3[1])),
-  high_ci = c(boot::inv.logit(ci_col_pbgr_m2[2]), boot::inv.logit(ci_col_pbgr_m3[2]))
-)
-
-aru.data.pbgr$Method <- factor(aru.data.pbgr$Method, levels = c("ARU","ARU + PC"))
-
-col.pbgr <- ggplot(aru.data.pbgr, aes(x = Method, y = Estimate, group = Method)) +
-  geom_point(position = position_dodge(width = 0.2)) +
-  geom_errorbar(
-    aes(ymin = low_ci, ymax = high_ci),
-    position = position_dodge(width = 0.2),
-    width = 0.2) +
-  labs(title = "Pied-billed Grebe",
-       x = "Method", y = "Colonization") +
-  theme_Publication() +
-  theme_pubr() +
-  labs_pubr() +
-  theme(axis.title = element_text(size = 8),
-        title = element_text(size = 10),
-        axis.text = element_text(size = 8)) +
-  scale_y_continuous(limits = c(0,1))
-
-col.pbgr
-
-# ggsave("./Plots/ch1/col_compare_pbgr.png", plot = col.pbgr,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
-
-
-#extinction 
-aru.data.pbgr <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_ext_pbgr_m2, est_ext_pbgr_m3),
-  low_ci = c(boot::inv.logit(ci_ext_pbgr_m2[1]), boot::inv.logit(ci_ext_pbgr_m3[1])),
-  high_ci = c(boot::inv.logit(ci_ext_pbgr_m2[2]), boot::inv.logit(ci_ext_pbgr_m3[2]))
-)
-
-aru.data.pbgr$Method <- factor(aru.data.pbgr$Method, levels = c("ARU","ARU + PC"))
-
-ext.pbgr <- ggplot(aru.data.pbgr, aes(x = Method, y = Estimate, group = Method)) +
-  geom_point(position = position_dodge(width = 0.2)) +
-  geom_errorbar(
-    aes(ymin = low_ci, ymax = high_ci),
-    position = position_dodge(width = 0.2),
-    width = 0.2) +
-  labs(x = "Method", y = "Extinction") +
-  theme_Publication() +
-  theme_pubr() +
-  labs_pubr() +
-  theme(axis.title = element_text(size = 8),
-        title = element_text(size = 10),
-        axis.text = element_text(size = 8)) +
-  scale_y_continuous(limits = c(0,1))
-
-ext.pbgr
-
-# ggsave("./Plots/ch1/ext_compare_pbgr.png", plot = ext.pbgr,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
 
 #SORA --------------------------------------------------------------------------
 
 aru.data.sora <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_psi_sora_m2, est_psi_sora_m3),
-  low_ci = c(boot::inv.logit(ci_psi_sora_m2[1]), boot::inv.logit(ci_psi_sora_m3[1])),
-  high_ci = c(boot::inv.logit(ci_psi_sora_m2[2]), boot::inv.logit(ci_psi_sora_m3[2]))
+  Method = c("PC","ARU","ARU + PC"),
+  Estimate = c(est_psi_sora_m1,est_psi_sora_m2, est_psi_sora_m3),
+  low_ci = c(boot::inv.logit(ci_psi_sora_m1[1]),boot::inv.logit(ci_psi_sora_m2[1]), boot::inv.logit(ci_psi_sora_m3[1])),
+  high_ci = c(boot::inv.logit(ci_psi_sora_m1[2]),boot::inv.logit(ci_psi_sora_m2[2]), boot::inv.logit(ci_psi_sora_m3[2]))
 )
 
-aru.data.sora$Method <- factor(aru.data.sora$Method, levels = c("ARU","ARU + PC"))
+aru.data.sora$Method <- factor(aru.data.sora$Method, levels = c("PC","ARU","ARU + PC"))
 
 psi.sora <- ggplot(aru.data.sora, aes(x = Method, y = Estimate, group = Method)) +
   geom_point(position = position_dodge(width = 0.2)) +
@@ -481,20 +268,16 @@ psi.sora <- ggplot(aru.data.sora, aes(x = Method, y = Estimate, group = Method))
 
 psi.sora
 
-# ggsave("./Plots/ch1/psi_compare_sora.png", plot = psi.sora,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
+
 
 aru.data.sora <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_p_sora_m2, est_p_sora_m3),
-  low_ci = c(boot::inv.logit(ci_p_sora_m2[1]), boot::inv.logit(ci_p_sora_m3[1])),
-  high_ci = c(boot::inv.logit(ci_p_sora_m2[2]), boot::inv.logit(ci_p_sora_m3[2]))
+  Method = c("PC","ARU","ARU + PC"),
+  Estimate = c(est_p_sora_m1,est_p_sora_m2, est_p_sora_m3),
+  low_ci = c(boot::inv.logit(ci_p_sora_m1[1]),boot::inv.logit(ci_p_sora_m2[1]), boot::inv.logit(ci_p_sora_m3[1])),
+  high_ci = c(boot::inv.logit(ci_p_sora_m1[2]),boot::inv.logit(ci_p_sora_m2[2]), boot::inv.logit(ci_p_sora_m3[2]))
 )
 
-aru.data.sora$Method <- factor(aru.data.sora$Method, levels = c("ARU","ARU + PC"))
+aru.data.sora$Method <- factor(aru.data.sora$Method, levels = c("PC","ARU","ARU + PC"))
 
 p.sora <- ggplot(aru.data.sora, aes(x = Method, y = Estimate, group = Method)) +
   geom_point(position = position_dodge(width = 0.2)) +
@@ -502,7 +285,7 @@ p.sora <- ggplot(aru.data.sora, aes(x = Method, y = Estimate, group = Method)) +
     aes(ymin = low_ci, ymax = high_ci),
     position = position_dodge(width = 0.2),
     width = 0.2) +
-  labs(x = "Method", y = "Detection Probability") +
+  labs(title = "Sora",x = "Method", y = "Detection Probability") +
   theme_Publication() +
   theme_pubr() +
   labs_pubr() +
@@ -512,172 +295,9 @@ p.sora <- ggplot(aru.data.sora, aes(x = Method, y = Estimate, group = Method)) +
   scale_y_continuous(limits = c(0,1))
 
 p.sora
-
-# ggsave("./Plots/ch1/p_compare_sora.png", plot = p.sora,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
-
-##colonization from dynamic 
-
-aru.data.sora <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_col_sora_m2, est_col_sora_m3),
-  low_ci = c(boot::inv.logit(ci_col_sora_m2[1]), boot::inv.logit(ci_col_sora_m3[1])),
-  high_ci = c(boot::inv.logit(ci_col_sora_m2[2]), boot::inv.logit(ci_col_sora_m3[2]))
-)
-
-aru.data.sora$Method <- factor(aru.data.sora$Method, levels = c("ARU","ARU + PC"))
-
-col.sora <- ggplot(aru.data.sora, aes(x = Method, y = Estimate, group = Method)) +
-  geom_point(position = position_dodge(width = 0.2)) +
-  geom_errorbar(
-    aes(ymin = low_ci, ymax = high_ci),
-    position = position_dodge(width = 0.2),
-    width = 0.2) +
-  labs(title = "Sora",
-       x = "Method", y = "Colonization") +
-  theme_Publication() +
-  theme_pubr() +
-  labs_pubr() +
-  theme(axis.title = element_text(size = 8),
-        title = element_text(size = 10),
-        axis.text = element_text(size = 8)) +
-  scale_y_continuous(limits = c(0,1))
-
-col.sora
-
-# ggsave("./Plots/ch1/col_compare_sora.png", plot = col.sora,
-#        width = 3.5,
-#        height = 3.5,
-#        dpi = 300,
-#        units = "in")
-
-
-#extinction 
-aru.data.sora <- data.frame(
-  Method = c("ARU","ARU + PC"),
-  Estimate = c(est_ext_sora_m2, est_ext_sora_m3),
-  low_ci = c(boot::inv.logit(ci_ext_sora_m2[1]), boot::inv.logit(ci_ext_sora_m3[1])),
-  high_ci = c(boot::inv.logit(ci_ext_sora_m2[2]), boot::inv.logit(ci_ext_sora_m3[2]))
-)
-
-aru.data.sora$Method <- factor(aru.data.sora$Method, levels = c("ARU","ARU + PC"))
-
-ext.sora <- ggplot(aru.data.sora, aes(x = Method, y = Estimate, group = Method)) +
-  geom_point(position = position_dodge(width = 0.2)) +
-  geom_errorbar(
-    aes(ymin = low_ci, ymax = high_ci),
-    position = position_dodge(width = 0.2),
-    width = 0.2) +
-  labs(x = "Method", y = "Extinction") +
-  theme_Publication() +
-  theme_pubr() +
-  labs_pubr() +
-  theme(axis.title = element_text(size = 8),
-        title = element_text(size = 10),
-        axis.text = element_text(size = 8)) +
-  scale_y_continuous(limits = c(0,1))
-
-ext.sora
-
-# ggsave("./Plots/ch1/ext_compare_sora.png", plot = ext.sora,
-#        width = 3.5,
-#        height = 7,
-#        dpi = 300,
-#        units = "in")
-
-
 # Combine plots ----------------------------------------------------------------
 
-psi<- (psi.lebi / psi.amco / psi.pbgr / psi.sora) + plot_annotation(tag_levels = "A")
 
-psi
-
-# ggsave("./Plots/ch1/psi_allspp.png", plot = psi,
-#        width = 4.25,
-#        height = 5.5,
-#        dpi = 300,
-#        units = "in")
-
-p<- (p.lebi / p.amco / p.pbgr / p.sora) + plot_annotation(tag_levels = "A")
-
-p
-
-# ggsave("./Plots/ch1/p_allspp.png", plot = p,
-#        width = 4.25,
-#        height = 5.5,
-#        dpi = 300,
-#        units = "in")
-
-col<- (col.lebi / col.amco / col.pbgr / col.sora) + plot_annotation(tag_levels = "A")
-
-col
-
-# ggsave("./Plots/ch1/col_allspp.png", plot = col,
-#        width = 4.25,
-#        height = 5.5,
-#        dpi = 300,
-#        units = "in")
-
-ext<- (ext.lebi / ext.amco / ext.pbgr / ext.sora) + plot_annotation(tag_levels = "A")
-
-ext
-
-# ggsave("./Plots/ch1/ext_allspp.png", plot = ext,
-#        width = 4.25,
-#        height = 5.5,
-#        dpi = 300,
-#        units = "in")
-
-
-
-lebi <- (psi.lebi / p.lebi / col.lebi / ext.lebi)
-
-lebi
-
-# ggsave("./Plots/ch1/lebi_all.png", plot = test,
-#        width = 4.25,
-#        height = 5.5,
-#        dpi = 300,
-#        units = "in")
-
-
-amco <- (psi.amco / p.amco / col.amco / ext.amco)
-
-amco
-
-# ggsave("./Plots/ch1/amco_all.png", plot = amco,
-#        width = 4.25,
-#        height = 5.5,
-#        dpi = 300,
-#        units = "in")
-
-pbgr <- (psi.pbgr / p.pbgr / col.pbgr / ext.pbgr)
-
-pbgr
-
-# ggsave("./Plots/ch1/pbgr_all.png", plot = pbgr,
-#        width = 4.25,
-#        height = 5.5,
-#        dpi = 300,
-#        units = "in")
-
-sora <- (psi.sora / p.sora / col.sora / ext.sora)
-
-sora
-
-# ggsave("./Plots/ch1/sora_all.png", plot = sora,
-#        width = 4.25,
-#        height = 5.5,
-#        dpi = 300,
-#        units = "in")
-
-
-
-# occupancy and det prob plots ------------------------------------------------
-## Figure 2 in manuscript
 (lebi <- (psi.lebi / p.lebi))
 
 (amco <-  (psi.amco / p.amco))
@@ -692,61 +312,25 @@ all <- (lebi | amco | pbgr | sora) +
               axes = "collect") 
 all
 
-all2 <- (lebi + amco + pbgr + sora) +
-  plot_layout(axis_titles = "collect",
-              guides = "collect",
-              axes = "collect")
-all2
 
-ggsave("./plots/Figure2.png", plot = all,
-       width = 7,
-       height = 6,
+
+ggsave("./Plots/objective1_final.png", plot = all,
+       width = 8,
+       height = 5,
        dpi = 300,
        units = "in")
 
 
+#Just detection probability
+det_all <- (p.lebi | p.amco | p.pbgr | p.sora) +
+  plot_layout(axis_titles = "collect",
+              guides = "collect",
+              axes = "collect") 
+det_all
 
-# alternative options
-# 
-# (ocu <- (psi.lebi | p.lebi) / (psi.amco | p.amco) / (psi.pbgr | p.pbgr) / 
-#     (psi.sora | p.sora) +
-#   plot_layout(axis_titles = "collect",
-#               guides = "collect",
-#               axes = "collect"))
-# 
-# ggsave("./plots/Figure2v2.png", plot = ocu,
-#        width = 6,
-#        height = 10,
-#        dpi = 300)
-# # colonization and extinction plots --------------------------------------------
-# ## Figure 3 in manuscript
-# (lebi <- (col.lebi / ext.lebi))
-# 
-# (amco <-  (col.amco / ext.amco))
-# 
-# (pbgr <-(col.pbgr / ext.pbgr))
-# 
-# (sora <-  (col.sora / ext.sora))
-# 
-# all <- (lebi | amco | pbgr | sora) +
-#   plot_layout(axis_titles = "collect",
-#               guides = "collect",
-#               axes = "collect") 
-# all
-# 
-# ggsave("./plots/Figure3.png", plot = all,
-#        width = 7,
-#        height = 6,
-#        dpi = 300,
-#        units = "in")
-# 
-# (col <- (col.lebi | ext.lebi) / (col.amco | ext.amco) / (col.pbgr | ext.pbgr) / 
-#     (col.sora | ext.sora) +
-#     plot_layout(axis_titles = "collect",
-#                 guides = "collect",
-#                 axes = "collect"))
-# 
-# ggsave("./plots/Figure3v2.png", plot = col,
-#        width = 6,
-#        height = 10,
-#        dpi = 300)
+ggsave("./Plots/objective1_detection.png", plot = det_all,
+       width = 8,
+       height = 5,
+       dpi = 300,
+       units = "in")
+#Just occupancy probability
