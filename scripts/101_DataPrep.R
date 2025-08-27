@@ -2,7 +2,7 @@
 # 
 ## file name: 101_DataPrep.R
 ## Author: Haley Holiman
-## Updated 8/8/2025
+## Updated 7/8/2025
 ## Output: Code to clean up PC and ARU data for Part 1 of TN Marshbirds Paper
 ################################################################################L
 setwd("C:/Users/SIU856584167/OneDrive - Southern Illinois University/Marshbirds/final_draft")
@@ -344,7 +344,31 @@ print(enc_hist_aru)
 str(enc_hist_aru)
 
 
+### Re structure enc_hist_aru for single season occupancy
 
+  enc_hist_aru_ss <- list()
+  
+  for (species in names(enc_hist_aru)) {
+    
+    df <- enc_hist_aru[[species]] 
+    
+    # Keep site names from rownames
+    df$site <- rownames(df)
+    
+    df_long <- df %>%
+      pivot_longer(-site, names_to = "Occ", values_to = "value") %>%
+      filter(str_detect(Occ, "_R[123]$")) %>%
+      mutate(round = str_extract(Occ, "R[123]"))
+    
+    df_summary <- df_long %>%
+      group_by(site, round) %>%
+      summarise(present = as.integer(any(value == 1)), .groups = "drop") %>%
+      pivot_wider(names_from = round, values_from = present, values_fill = 0) %>%
+      rename_with(~ str_replace_all(., "R", "R_"))
+    
+    enc_hist_aru_ss[[species]] <- df_summary
+  }
+  
 
 #3 ARU + PC DATA ---------------------------------------------------------------
 #Point Count surveys occured on the last ARU recording day - thus if a bird was detected on a 
@@ -443,3 +467,28 @@ for (s in species) {
 }
 
 
+#modify for single season occupancy
+print(enc_hist_comb$`Least Bittern`)
+
+enc_hist_comb_ss <- list()
+
+for (species in names(enc_hist_comb)) {
+  
+  df <- enc_hist_comb[[species]] 
+  
+  # Keep site names from rownames
+  df$site <- rownames(df)
+  
+  df_long <- df %>%
+    pivot_longer(-site, names_to = "Occ", values_to = "value") %>%
+    filter(str_detect(Occ, "_R[123]$")) %>%
+    mutate(round = str_extract(Occ, "R[123]"))
+  
+  df_summary <- df_long %>%
+    group_by(site, round) %>%
+    summarise(present = as.integer(any(value == 1)), .groups = "drop") %>%
+    pivot_wider(names_from = round, values_from = present, values_fill = 0) %>%
+    rename_with(~ str_replace_all(., "R", "R_"))
+  
+  enc_hist_comb_ss[[species]] <- df_summary
+}
