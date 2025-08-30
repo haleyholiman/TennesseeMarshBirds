@@ -1,4 +1,4 @@
-library(tidyverse)
+c:\Users\SIU856584167\OneDrive - Southern Illinois University\Marshbirds\final_draft\scripts\202_Models_agb_hh.R c:\Users\SIU856584167\OneDrive - Southern Illinois University\Marshbirds\final_draft\scripts\203_Plots.Rlibrary(tidyverse)
 library(unmarked)
 library(AICcmodavg)
 library(boot)
