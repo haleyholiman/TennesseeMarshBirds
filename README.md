@@ -22,10 +22,11 @@ ________________________________________________________________________________
 * pointcountdata_2023: contains point count data from marsh bird surveys, May-July 2023, Central TN sites
 * Pointcountdata_2022: contains point count data from marsh bird surveys, May-July 2022, West TN sites
 * allrounds_standarizedrecordingdays_2022:contains ARU data of marshbird detections from BirdNet analysis for 2022
-* allrounds_standardizedrecordingdays_2023:contains ARU data of marshbird detections from BirdNet analysis for 2022
+* allrounds_standardizedrecordingdays_2023:contains ARU data of marshbird detections from BirdNet analysis for 2023
 * noaacovs2022: weather data downloaded from noaa.gov
 * noaacovs 2023: weather data downloaded from noaa.gov
-* obsCovs_2022: observation covarites for 2022 
+* obsCovs_2022: observation covarites for 2022
+* obsCovs_2023: observation covarites for 2023 
 * Pointcountdata_2022: point count raw data from 2022 MB surveys
 * pointcountdata_2023: point count raw data from 2023 MB surveys
 * recordingdaycov: recording day data for each site in 2022
